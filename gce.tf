@@ -8,7 +8,7 @@ resource "google_compute_instance" "shared_vpc_vm" {
     enable-osconfig = "true"              # 啟用 Google OS Config，用於管理操作系統更新和配置
 
   boot_disk = {
-    initialize_params {
+    initialize_params = {
       image = "projects/debian-cloud/global/images/debian-12-bookworm-v20240910"   # 使用 Red Hat Enterprise Linux (RHEL) 8 的映像
       size  = 20                                                     # 設置啟動磁碟的大小為 20 GB
       type  = "pd-balanced"                                          # 使用 PD Balanced 類型的磁碟，具有良好的性能和成本效益

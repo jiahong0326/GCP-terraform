@@ -15,13 +15,13 @@ resource "google_compute_instance" "shared_vpc_vm" {
     }
   }
 
-  network_interface {
+  network_interface = {
     stack_type  = "IPV4_ONLY"                                      # 設置網路堆疊類型為僅支持 IPv4
     network    = "projects/${var.gcp_host_project}/global/networks/${var.subnetwork_gce_vpc}"  # 參與對等的 VPC 網路，由變數 `var.gcp_host_project` 和 `var.subnetwork_gce_vpc` 提供
     subnetwork = "projects/${var.gcp_host_project}/regions/${var.region}/subnetworks/${var.subnetwork_gce_subnet}"  # 參與的子網，由變數 `var.region` 和 `var.subnetwork_gce_vpc_ap` 提供
   }
 
-  service_account {
+  service_account = {
     email  = "846966349875-compute@developer.gserviceaccount.com"  # 使用指定的服務帳戶來運行 VM 實例
     scopes = [
       "https://www.googleapis.com/auth/devstorage.read_only",      # 訪問 Google Cloud Storage 的只讀權限
@@ -33,7 +33,7 @@ resource "google_compute_instance" "shared_vpc_vm" {
     ]
   }
 
-  shielded_instance_config {
+  shielded_instance_config = {
     enable_integrity_monitoring = true   # 啟用完整性監控，防止未經授權的系統變更
     enable_secure_boot          = false  # 啟用安全啟動，僅允許簽名的操作系統啟動，防止加載未授權的代碼
     enable_vtpm                 = true   # 啟用虛擬 TPM（Trusted Platform Module），增強硬體安全性

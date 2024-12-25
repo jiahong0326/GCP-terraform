@@ -2,7 +2,7 @@ provider "google" {
   project = var.project # 替換為你的 GCP 專案 ID
   region  = var.region         # 替換為你要使用的區域
   zone    = var.zone       # 替換為你要使用的可用區
-  credentials = key.json(/main/key.json)
+  credentials = key.json(github.com/jiahong0326/GCP-terraform/blob/main/key.json)
 }
 
 
